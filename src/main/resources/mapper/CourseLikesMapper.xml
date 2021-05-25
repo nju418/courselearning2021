@@ -10,7 +10,7 @@
     values (#{courseId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
   </insert>
   <select id="count" resultType="java.lang.Integer">
-    select count(*) as num from course_likes
+    select count(*) as count from course_likes
     where course_id=#{courseId,jdbcType=INTEGER} and user_id=#{userId,jdbcType=INTEGER};
   </select>
   <select id="countLikesOfCourse" resultType="java.lang.Integer" parameterType="java.lang.Integer">
