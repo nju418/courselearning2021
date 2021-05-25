@@ -15,6 +15,7 @@ import java.util.Map;
 /**
  * 用户点赞数发放策略
  */
+//
 @Component
 public class CourseLikeDeliverStrategy implements CouponDeliverStrategy {
 
