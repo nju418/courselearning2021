@@ -90,7 +90,10 @@ public class CourseServiceImpl implements CourseService {
                 bought = order.getStatus().equals(Constant.ORDER_STATUS_SUCCESS);
             manageable = uid.equals(course.getTeacherId());
         }
-        return new CourseVO(course, bought, manageable);
+        CourseVO result = new CourseVO(course, bought, manageable);
+        //判断课程是否已经被该用户点赞
+        result.setLiked(courseLikesMapper.count(courseId, uid) >= 1);
+        return result;
     }
 
     @Override
