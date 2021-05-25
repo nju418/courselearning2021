@@ -9,6 +9,7 @@ import cn.seecoder.courselearning.service.coupon.coupondeliverstrategy.CouponDel
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -17,10 +18,10 @@ import java.util.Map;
 @Component
 public class CourseLikeDeliverStrategy implements CouponDeliverStrategy {
 
-    @Autowired
+    @Resource
     protected CourseLikesMapper courseLikesMapper;
 
-    @Autowired
+    @Resource
     protected CourseMapper courseMapper;
 
     /**
