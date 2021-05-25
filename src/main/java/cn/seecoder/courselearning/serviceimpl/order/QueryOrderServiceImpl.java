@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 @Service
 public class QueryOrderServiceImpl implements QueryOrderService {
 
+    //QueryOrder实现
     @Resource
     private QueryOrderMapper queryOrderMapper;
 
