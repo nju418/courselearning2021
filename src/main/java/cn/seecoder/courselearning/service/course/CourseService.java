@@ -25,4 +25,16 @@ public interface CourseService {
     ResultVO<CourseVO> createCourse(CourseVO courseVO);
 
     Course getByPrimaryKey(Integer courseId);
+
+    //用户取消点赞
+    void cancelCourseLikes(Integer courseId, Integer userId);
+
+    //用户点赞
+    void addCourseLikes(Integer courseId, Integer userId);
+
+    //查看用户是否已点赞
+    Boolean isCourseLiked(Integer courseId, Integer userId);
+
+    //返回课程点赞数
+    int getCountOfCourseLikes(Integer courseId);
 }

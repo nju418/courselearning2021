@@ -24,6 +24,7 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService {
     @Resource
     private CourseMapper courseMapper;
+
     @Resource
     private CourseLikesMapper courseLikesMapper;
 
@@ -110,6 +111,26 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course getByPrimaryKey(Integer courseId) {
         return courseMapper.selectByPrimaryKey(courseId);
+    }
+
+    @Override
+    public void cancelCourseLikes(Integer courseId, Integer userId) {
+        courseLikesMapper.deleteByPrimaryKey(courseId, userId);
+    }
+
+    @Override
+    public void addCourseLikes(Integer courseId, Integer userId) {
+        courseLikesMapper.insert(courseId, userId);
+    }
+
+    @Override
+    public Boolean isCourseLiked(Integer courseId, Integer userId) {
+        return courseLikesMapper.count(courseId, userId) == 1;
+    }
+
+    @Override
+    public int getCountOfCourseLikes(Integer courseId) {
+        return courseLikesMapper.countLikesOfCourse(courseId);
     }
 
     private PageInfo<CourseVO> getCourseVOPageInfo(Integer uid, PageInfo<Course> po) {
