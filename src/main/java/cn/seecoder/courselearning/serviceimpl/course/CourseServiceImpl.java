@@ -64,7 +64,10 @@ public class CourseServiceImpl implements CourseService {
         List<CourseVO> ret = new ArrayList<>();
         List<Course> courseList = courseMapper.selectByStudentId(uid);
         for(Course course: courseList){
-            ret.add(new CourseVO(course, true, false));
+            //课程查询CourseLike表，看用户是否已点赞
+            CourseVO vo = new CourseVO(course, false, true);
+            vo.setLiked(courseLikesMapper.count(vo.getId(), uid) >= 1);
+            ret.add(vo);
         }
         return ret;
     }
@@ -74,7 +77,10 @@ public class CourseServiceImpl implements CourseService {
         List<CourseVO> ret = new ArrayList<>();
         List<Course> courseList = courseMapper.selectByTeacherId(uid);
         for(Course course: courseList){
-            ret.add(new CourseVO(course, false, true));
+            //课程查询CourseLike表，看用户是否已点赞
+            CourseVO vo = new CourseVO(course, false, true);
+            vo.setLiked(courseLikesMapper.count(vo.getId(), uid) >= 1);
+            ret.add(vo);
         }
         return ret;
     }
@@ -145,6 +151,8 @@ public class CourseServiceImpl implements CourseService {
                 if(order != null)
                     vo.setBought(order.getStatus().equals(Constant.ORDER_STATUS_SUCCESS));
                 vo.setManageable(uid.equals(vo.getTeacherId()));
+                //查询用户是否已点赞
+                vo.setLiked(courseLikesMapper.count(vo.getId(), uid) >= 1);
             }
         }
         return result;
