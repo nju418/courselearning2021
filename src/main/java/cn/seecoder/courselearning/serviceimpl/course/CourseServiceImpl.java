@@ -129,7 +129,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void addCourseLikes(Integer courseId, Integer userId) {
-        courseLikesMapper.insert(courseId, userId);
+        if(courseLikesMapper.count(courseId,userId)==0){
+            courseLikesMapper.insert(courseId, userId);
+        }
     }
 
     @Override
