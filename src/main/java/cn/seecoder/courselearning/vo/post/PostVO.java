@@ -26,6 +26,10 @@ public class PostVO {
     //用户是否允许回复
     private Boolean isAllowToReply = false;
 
+    public PostVO(){
+
+    }
+
     public PostVO(@NonNull Post post){
         id = post.getId();
         userId = post.getUserId();
