@@ -22,4 +22,6 @@ public class Constant {
     public static final Integer ORDER_STATUS_CANCEL = 4;
     // 一个讨论区的页面内包含的帖子数量
     public static final Integer POST_PAGE_SIZE = 10;
+    // 一个帖子内包含的回复数量
+    public static final Integer REPLY_PAGE_SIZE = 10;
 }
