@@ -23,6 +23,7 @@ public class PostVO {
 
     private Date latestReplyTime;
 
+    //用户是否允许回复
     private Boolean isAllowToReply = false;
 
     public PostVO(@NonNull Post post){
