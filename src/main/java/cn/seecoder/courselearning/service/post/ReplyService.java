@@ -1,5 +1,6 @@
 package cn.seecoder.courselearning.service.post;
 
+import cn.seecoder.courselearning.po.post.Reply;
 import cn.seecoder.courselearning.vo.ResultVO;
 import cn.seecoder.courselearning.vo.post.ReplyVO;
 import com.github.pagehelper.PageInfo;
@@ -10,4 +11,7 @@ public interface ReplyService {
 
     //发布回复
     ResultVO<ReplyVO> createReply(ReplyVO replyVO);
+
+    //根据引用回复id查询相应回复
+    ReplyVO getReplyBYReplyId(Integer replyId);
 }

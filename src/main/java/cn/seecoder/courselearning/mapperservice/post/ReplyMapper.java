@@ -8,4 +8,6 @@ public interface ReplyMapper {
     int insert(Reply reply);
 
     List<Reply> selectByPostId(Integer postId);
+
+    Reply selectByReplyId(Integer replyId);
 }
