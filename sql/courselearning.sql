@@ -3,6 +3,58 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
+-- Table structure for reply
+-- ----------------------------
+DROP TABLE IF EXISTS `reply`;
+CREATE TABLE `reply`  (
+                          `id` int(11) NOT NULL AUTO_INCREMENT,
+                          `post_id` int(11) NOT NULL,
+                          `user_id` int(11) NOT NULL,
+                          `reply_id` int(11) NULL DEFAULT NULL,
+                          `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                          `create_time` datetime(0) NOT NULL,
+
+                          PRIMARY KEY (`id`) USING BTREE,
+                          INDEX `reply_post`(`post_id`) USING BTREE,
+                          INDEX `reply_user`(`user_id`) USING BTREE,
+
+                          CONSTRAINT `reply_post` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+                          CONSTRAINT `reply_user` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of reply
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for post
+-- ----------------------------
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE `post`  (
+                         `id` int(11) NOT NULL AUTO_INCREMENT,
+                         `user_id` int(11) NOT NULL,
+                         `course_id` int(11) NOT NULL,
+                         `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                         `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                         `create_time` datetime(0) NOT NULL,
+                         `latest_reply_time` datetime(0) NOT NULL,
+                         `teacher_id` int(11) NOT NULL,
+
+                         PRIMARY KEY (`id`) USING BTREE,
+                         INDEX `post_course`(`course_id`) USING BTREE,
+                         INDEX `post_user`(`user_id`) USING BTREE,
+                         CONSTRAINT `post_course` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+                         CONSTRAINT `post_user` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of post
+-- ----------------------------
+
+
+
+
+-- ----------------------------
 -- Table structure for coupon
 -- ----------------------------
 DROP TABLE IF EXISTS `coupon`;
