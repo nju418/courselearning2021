@@ -21,7 +21,7 @@ public class PostController {
      * @param uid 用户id,用来判断用户是否能回复
      * @param sortedType 排序方式,1为按创建时间排序，2为按最新回复时间排序
      * */
-    @GetMapping("/{courseId}/page")
+    @GetMapping("/{courseId}/{page}")
     public PageInfo<PostVO> getPostsByCourseId(@RequestParam(required = false, defaultValue = "") Integer uid,
                                                @RequestParam(required = false, defaultValue = "1") Integer sortedType,
                                                @PathVariable Integer courseId, @PathVariable Integer page){
