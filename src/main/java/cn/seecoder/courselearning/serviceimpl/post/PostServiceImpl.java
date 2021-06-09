@@ -17,12 +17,14 @@ import cn.seecoder.courselearning.vo.post.PostVO;
 import cn.seecoder.courselearning.vo.user.UserVO;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class PostServiceImpl implements PostService {
     @Resource
     PostMapper postMapper;
