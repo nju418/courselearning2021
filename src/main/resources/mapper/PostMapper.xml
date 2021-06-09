@@ -10,6 +10,7 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <result column="latest_reply_time" jdbcType="TIMESTAMP" property="latestReplyTime" />
     </resultMap>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from post
         where id = #{id,jdbcType=INTEGER}
@@ -29,9 +30,11 @@
             latest_reply_time = #{latestReplyTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <select id="selectByCourseId" parameterType="ava.lang.Integer" resultMap="BaseResultMap">
-        select *
+
+    <select id="selectByCourseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select id, user_id, course_id, title, content, create_time, latest_reply_time
         from post
-        where course_id = #{courseId,jdbcType=VARCHAR}
+        where course_id = #{courseId}
     </select>
+
 </mapper>
