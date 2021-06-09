@@ -82,7 +82,7 @@ public class PostServiceImpl implements PostService {
 
     boolean isAllowToReply(Integer uid, Integer courseId){
         //如果学生已经购买该课程或是创建该课程的老师，则允许回复帖子
-        CourseVO courseVO = courseService.getCourse(uid, courseId);
+        CourseVO courseVO = courseService.getCourse(courseId, uid);
         return courseVO.isBought() || courseVO.isManageable();
     }
 
