@@ -18,7 +18,7 @@ public class ReplyController {
 
     /**
      *
-     * @param postid postId,用来查询帖子相应回复列表
+     * @param postId postId,用来查询帖子相应回复列表
      * 按回复时间排序回复
      * */
     @GetMapping("/{postId}/{page}")

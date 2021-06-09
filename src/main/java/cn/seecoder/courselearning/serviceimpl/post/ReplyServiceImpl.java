@@ -3,6 +3,8 @@ package cn.seecoder.courselearning.serviceimpl.post;
 import cn.seecoder.courselearning.mapperservice.post.ReplyMapper;
 import cn.seecoder.courselearning.po.post.Post;
 import cn.seecoder.courselearning.po.post.Reply;
+import cn.seecoder.courselearning.po.post.ReplyNotice;
+import cn.seecoder.courselearning.service.post.ReplyNoticeService;
 import cn.seecoder.courselearning.service.post.ReplyService;
 import cn.seecoder.courselearning.util.Constant;
 import cn.seecoder.courselearning.util.PageInfoUtil;
@@ -23,6 +25,8 @@ import java.util.List;
 public class ReplyServiceImpl implements ReplyService {
     @Resource
     ReplyMapper replyMapper;
+    @Resource
+    ReplyNoticeService replyNoticeService;
 
     @Override
     public PageInfo<ReplyVO> getRepliesByPostId(Integer postId, Integer currPage, Integer pageSize) {
@@ -46,6 +50,7 @@ public class ReplyServiceImpl implements ReplyService {
         Reply reply=new Reply(replyVO);
         reply.setCreateTime(new Date());
         replyMapper.insert(reply);
+        //replyNoticeService.insert(new ReplyNotice(replyVO));
         return new ResultVO<>(Constant.REQUEST_SUCCESS, "回复创建成功");
     }
 

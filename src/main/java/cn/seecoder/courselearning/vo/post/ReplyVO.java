@@ -30,4 +30,5 @@ public class ReplyVO {
         createTime = reply.getCreateTime();
     }
 
+    public ReplyVO(){}
 }
