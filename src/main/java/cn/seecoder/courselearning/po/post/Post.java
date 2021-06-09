@@ -77,6 +77,7 @@ public class Post {
         this.latestReplyTime = latestReplyTime;
     }
 
+    public Post(){};
 
     public Post(@NonNull PostVO postVO){
         this.id = postVO.getId();

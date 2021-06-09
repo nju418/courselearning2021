@@ -11,7 +11,7 @@ public interface PostMapper {
 
     int insert(Post post);
 
-    int updateByPrimaryKey(Integer id);
+    int updateByPrimaryKey(Post post);
 
     List<Post> selectByCourseId(Integer courseId);
 

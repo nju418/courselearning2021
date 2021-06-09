@@ -71,7 +71,7 @@ public class Reply {
         id = replyVO.getId();
         postId = replyVO.getPostId();
         userId = replyVO.getUserId();
-        replyId = replyVO.getReplyId();
+        replyId = replyVO.getReply().getId();
         content = replyVO.getContent();
         createTime = replyVO.getCreateTime();
     }

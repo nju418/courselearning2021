@@ -15,7 +15,8 @@ public class ReplyVO {
 
     private Integer userId;
 
-    private Integer replyId;
+    //对回复内容的引用
+    private ReplyVO reply;
 
     private String content;
 
@@ -25,7 +26,6 @@ public class ReplyVO {
         id = reply.getId();
         postId = reply.getPostId();
         userId = reply.getUserId();
-        replyId = reply.getReplyId();
         content = reply.getContent();
         createTime = reply.getCreateTime();
     }
