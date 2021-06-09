@@ -3,6 +3,26 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
+-- Table structure for reply_notice
+-- ----------------------------
+DROP TABLE IF EXISTS `reply_notice`;
+CREATE TABLE `reply_notice`  (
+                         `id` int(11) NOT NULL AUTO_INCREMENT,
+                         `user_id` int(11) NOT NULL,
+                         `reply_id` int(11) NOT NULL,
+
+                         PRIMARY KEY (`id`) USING BTREE,
+                         INDEX `reply_notice_reply`(`reply_id`) USING BTREE,
+                         INDEX `reply_notice_user`(`user_id`) USING BTREE,
+                         CONSTRAINT `reply_notice_reply` FOREIGN KEY (`reply_id`) REFERENCES `reply` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+                         CONSTRAINT `reply_notice_user` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of reply_notice
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for reply
 -- ----------------------------
 DROP TABLE IF EXISTS `reply`;
