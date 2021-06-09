@@ -18,12 +18,12 @@ public class ReplyController {
 
     /**
      *
-     * @param postid postid,用来查询帖子相应回复列表
+     * @param postid postId,用来查询帖子相应回复列表
      * 按回复时间排序回复
      * */
     @GetMapping("/{postId}/{page}")
-    public PageInfo<ReplyVO> getRepliesByPostId(@PathVariable Integer postid, @PathVariable Integer page){
-        return replyService.getRepliesByPostId(postid,page,Constant.REPLY_PAGE_SIZE);
+    public PageInfo<ReplyVO> getRepliesByPostId(@PathVariable Integer postId, @PathVariable Integer page){
+        return replyService.getRepliesByPostId(postId,page,Constant.REPLY_PAGE_SIZE);
     }
 
     @PostMapping("/create")
