@@ -23,6 +23,8 @@ public class PostVO {
 
     private Date latestReplyTime;
 
+    private Boolean isAllowToReply = false;
+
     public PostVO(@NonNull Post post){
         id = post.getId();
         userId = post.getUserId();

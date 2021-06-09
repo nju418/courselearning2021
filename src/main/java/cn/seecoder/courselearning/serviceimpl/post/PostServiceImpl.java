@@ -2,6 +2,7 @@ package cn.seecoder.courselearning.serviceimpl.post;
 
 import cn.seecoder.courselearning.mapperservice.post.PostMapper;
 import cn.seecoder.courselearning.po.course.Course;
+import cn.seecoder.courselearning.po.order.CourseOrder;
 import cn.seecoder.courselearning.po.post.Post;
 import cn.seecoder.courselearning.service.post.PostService;
 import cn.seecoder.courselearning.util.Constant;
@@ -22,7 +23,7 @@ public class PostServiceImpl implements PostService {
     PostMapper postMapper;
 
     @Override
-    public PageInfo<PostVO> getPostsByCourseId(Integer currPage, Integer pageSize, Integer courseId, Integer sortedType) {
+    public PageInfo<PostVO> getPostsByCourseId(Integer currPage, Integer pageSize, Integer courseId, Integer sortedType, Integer uid) {
         if(currPage==null || currPage<1) currPage=1;
         PageHelper.startPage(currPage, pageSize);
         List<Post> postList = postMapper.selectByCourseId(courseId);
@@ -37,7 +38,18 @@ public class PostServiceImpl implements PostService {
         }
 
         PageInfo<Post> po = new PageInfo<>(postList);
-        return PageInfoUtil.convert(po, PostVO.class);
+
+
+        PageInfo<PostVO> result = PageInfoUtil.convert(po, PostVO.class);
+        //检验用户是否允许回复
+        if(isAllowToReply(uid, courseId)){
+            List<PostVO> voList = result.getList();
+            for(PostVO vo: voList){
+                vo.setIsAllowToReply(true);
+            }
+        }
+
+        return result;
     }
 
     @Override
@@ -54,6 +66,10 @@ public class PostServiceImpl implements PostService {
         post.setLatestReplyTime(new Date());
         postMapper.updateByPrimaryKey(post);
         return new ResultVO<>(Constant.REQUEST_SUCCESS, "帖子最新回复时间更新成功");
+    }
+
+    boolean isAllowToReply(Integer uid, Integer courseId){
+
     }
 
 

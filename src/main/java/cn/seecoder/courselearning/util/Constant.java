@@ -20,4 +20,6 @@ public class Constant {
     public static final Integer ORDER_STATUS_WAIT = 3;
     // 订单已取消的状态码
     public static final Integer ORDER_STATUS_CANCEL = 4;
+    // 一个讨论区的页面内包含的帖子数量
+    public static final Integer POST_PAGE_SIZE = 10;
 }
