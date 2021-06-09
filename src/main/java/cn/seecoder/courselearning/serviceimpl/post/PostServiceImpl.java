@@ -67,6 +67,7 @@ public class PostServiceImpl implements PostService {
             return new ResultVO<>(Constant.REQUEST_FAIL, "该用户没有权限发布帖子");
         Post post = new Post(postVO);
         post.setLatestReplyTime(new Date());
+        post.setCreateTime(new Date());
         postMapper.insert(post);
         return new ResultVO<>(Constant.REQUEST_SUCCESS, "帖子发布成功");
     }
