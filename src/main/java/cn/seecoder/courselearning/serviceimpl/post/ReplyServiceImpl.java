@@ -25,8 +25,7 @@ import java.util.List;
 public class ReplyServiceImpl implements ReplyService {
     @Resource
     ReplyMapper replyMapper;
-    @Resource
-    ReplyNoticeService replyNoticeService;
+
 
     @Override
     public PageInfo<ReplyVO> getRepliesByPostId(Integer postId, Integer currPage, Integer pageSize) {

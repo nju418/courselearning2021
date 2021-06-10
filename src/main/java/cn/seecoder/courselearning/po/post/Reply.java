@@ -67,6 +67,8 @@ public class Reply {
         this.createTime = createTime;
     }
 
+    public Reply(){}
+
     public Reply(@NonNull ReplyVO replyVO){
         id = replyVO.getId();
         postId = replyVO.getPostId();
