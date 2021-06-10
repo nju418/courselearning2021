@@ -11,18 +11,18 @@
     </resultMap>
 
     <insert id="insert" parameterType="cn.seecoder.courselearning.po.post.Reply" useGeneratedKeys="true" keyProperty="id">
-        insert into reply (id, post_id,user_id,reply_id,content, create_time)
-        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},#{postId,jdbcType=INTEGER},
+        insert into reply (id,post_id,user_id,reply_id,content,create_time)
+        values (#{id,jdbcType=INTEGER}, #{postId,jdbcType=INTEGER},#{userId,jdbcType=INTEGER},
                 #{replyId,jdbcType=INTEGER},#{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
     </insert>
     <select id="selectByPostId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select id, post_id,user_id,reply_id,content, create_time
+        select id,post_id,user_id,reply_id,content,create_time
         from reply
-        where post_id = #{postId}
+        where post_id = #{postId,jdbcType=INTEGER}
     </select>
     <select id="selectByReplyId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select id, post_id,user_id,reply_id,content, create_time
+        select id,post_id,user_id,reply_id,content,create_time
         from reply
-        where id = #{replyId}
+        where id = #{replyId,jdbcType=INTEGER}
     </select>
 </mapper>

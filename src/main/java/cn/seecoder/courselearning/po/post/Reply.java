@@ -81,4 +81,5 @@ public class Reply {
         content = replyVO.getContent();
         createTime = replyVO.getCreateTime();
     }
+
 }

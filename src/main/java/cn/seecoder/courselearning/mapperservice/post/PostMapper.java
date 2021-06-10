@@ -15,6 +15,6 @@ public interface PostMapper {
 
     List<Post> selectByCourseId(Integer courseId);
 
-
+    Post selectByPrimaryKey(Integer id);
 
 }

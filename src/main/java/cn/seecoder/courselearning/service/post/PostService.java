@@ -1,5 +1,6 @@
 package cn.seecoder.courselearning.service.post;
 
+import cn.seecoder.courselearning.po.post.Post;
 import cn.seecoder.courselearning.vo.ResultVO;
 import cn.seecoder.courselearning.vo.post.PostVO;
 import com.github.pagehelper.PageInfo;
@@ -14,4 +15,6 @@ public interface PostService {
 
     //更新帖子最新回复时间
     ResultVO<PostVO> updateLatestReplyTime(PostVO postVO);
+
+    PostVO getPostsById(Integer id);
 }
