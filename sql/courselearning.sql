@@ -3,12 +3,7 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 
-create trigger create_reply_notice after insert on reply
-	for each row
-        begin
-            insert into reply_notice values (null, (select user_id from reply where id = new.reply_id), new.id);
-            insert into reply_notice values (null, (select user_id from post where id = new.post_id), NEW.id);
-        end;
+
 
 -- ----------------------------
 -- Table structure for reply_notice
@@ -17,7 +12,7 @@ DROP TABLE IF EXISTS `reply_notice`;
 CREATE TABLE `reply_notice`  (
                          `id` int(11) NOT NULL AUTO_INCREMENT,
                          `user_id` int(11) NOT NULL,
-                         `reply_id` int(11) NOT NULL,
+                         `reply_id` int(11) NOT NULL UNIQUE,
 
                          PRIMARY KEY (`id`) USING BTREE,
                          INDEX `reply_notice_reply`(`reply_id`) USING BTREE,
@@ -274,3 +269,22 @@ INSERT INTO `user_info` VALUES (8, '潘敏学', '00000000002', '123456', NULL, 0
 INSERT INTO `user_info` VALUES (9, '伏晓', '00000000003', '123456', NULL, 0, 'TEACHER', '2020-12-18 10:00:00');
 INSERT INTO `user_info` VALUES (10, '周瑞瑞', '00000000004', '123456', NULL, 0, 'TEACHER', '2020-12-18 10:00:00');
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+create trigger create_reply_notice after insert on reply
+    for each row
+        begin
+            declare reply_user_id int default null;
+            declare post_user_id int default null;
+            select user_id into reply_user_id from reply where id = new.reply_id;
+
+            if (reply_user_id is not null) then
+                insert into reply_notice values (null, reply_user_id, new.id);
+            end if;
+
+            select user_id into post_user_id from post where id = new.post_id;
+            if (post_user_id <> new.user_id) then
+            insert into reply_notice values (null, post_user_id, NEW.id);
+            end if;
+        end;
