@@ -27,7 +27,7 @@ public class ReplyController {
     }
 
     @PostMapping("/create")
-    public ResultVO<ReplyVO> createPost(@RequestBody ReplyVO replyVO) {
+    public ResultVO<ReplyVO> createReply(@RequestBody ReplyVO replyVO) {
         return replyService.createReply(replyVO);
     }
 }
