@@ -3,24 +3,25 @@
 <mapper namespace="cn.seecoder.courselearning.mapperservice.post.ReplyMapper">
     <resultMap id="BaseResultMap" type="cn.seecoder.courselearning.po.post.Reply">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="user_id" jdbcType="INTEGER" property="userId" />
         <result column="post_id" jdbcType="INTEGER" property="postId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="reply_id" jdbcType="INTEGER" property="replyId" />
         <result column="content" jdbcType="VARCHAR" property="content" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     </resultMap>
 
     <insert id="insert" parameterType="cn.seecoder.courselearning.po.post.Reply" useGeneratedKeys="true" keyProperty="id">
-        insert into reply (id, user_id, post_id,  content, create_time)
+        insert into reply (id, post_id,user_id,reply_id,content, create_time)
         values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},#{postId,jdbcType=INTEGER},
-                #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+                #{replyId,jdbcType=INTEGER},#{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
     </insert>
     <select id="selectByPostId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select id, user_id, course_id, content, create_time
+        select id, post_id,user_id,reply_id,content, create_time
         from reply
         where post_id = #{postId}
     </select>
     <select id="selectByReplyId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select id, user_id, course_id, content, create_time
+        select id, post_id,user_id,reply_id,content, create_time
         from reply
         where id = #{replyId}
     </select>
