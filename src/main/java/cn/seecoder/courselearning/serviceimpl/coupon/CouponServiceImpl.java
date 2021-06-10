@@ -9,10 +9,10 @@ import cn.seecoder.courselearning.po.coupon.UserCoupon;
 import cn.seecoder.courselearning.po.course.Course;
 import cn.seecoder.courselearning.po.order.CourseOrder;
 import cn.seecoder.courselearning.po.user.User;
+import cn.seecoder.courselearning.service.order.QueryOrderService;
 import cn.seecoder.courselearning.service.coupon.coupondeliverstrategy.CouponDeliverStrategy;
 import cn.seecoder.courselearning.service.coupon.CouponService;
 import cn.seecoder.courselearning.service.course.CourseService;
-import cn.seecoder.courselearning.service.order.CourseOrderService;
 import cn.seecoder.courselearning.service.user.UserService;
 import cn.seecoder.courselearning.util.Constant;
 import cn.seecoder.courselearning.util.CouponValidator;
@@ -43,6 +43,7 @@ public class CouponServiceImpl implements CouponService {
 
     private CourseService courseService;
 
+    @Resource
     private QueryOrderService orderService;
 
     @Autowired
@@ -55,10 +56,10 @@ public class CouponServiceImpl implements CouponService {
         this.courseService = courseService;
     }
 
-    @Autowired
-    public void setOrderService(QueryOrderService orderService) {
-        this.orderService = orderService;
-    }
+//    @Autowired
+//    public void setOrderService(QueryOrderService orderService) {
+//        this.orderService = orderService;
+//    }
 
     /**
      * 直接创建优惠券并发放
