@@ -36,5 +36,10 @@
         from post
         where course_id = #{courseId}
     </select>
+    <select id="selectByPrimaryKey" resultType="cn.seecoder.courselearning.po.post.Post" resultMap="BaseResultMap">
+        select id, user_id, course_id, title, content, create_time, latest_reply_time
+        from post
+        where id = #{id}
+    </select>
 
 </mapper>

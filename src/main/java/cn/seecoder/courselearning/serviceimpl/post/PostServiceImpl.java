@@ -80,6 +80,12 @@ public class PostServiceImpl implements PostService {
         return new ResultVO<>(Constant.REQUEST_SUCCESS, "帖子最新回复时间更新成功");
     }
 
+    @Override
+    public PostVO getPostsById(Integer id) {
+        PostVO result=new PostVO(postMapper.selectByPrimaryKey(id));
+        return result;
+    }
+
     boolean isAllowToReply(Integer uid, Integer courseId){
         //如果学生已经购买该课程或是创建该课程的老师，则允许回复帖子
         CourseVO courseVO = courseService.getCourse(courseId, uid);
