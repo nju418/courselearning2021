@@ -4,7 +4,7 @@ import cn.seecoder.courselearning.mapperservice.course.CourseWareMapper;
 import cn.seecoder.courselearning.po.order.CourseOrder;
 import cn.seecoder.courselearning.po.course.CourseWare;
 import cn.seecoder.courselearning.service.course.CourseWareService;
-import cn.seecoder.courselearning.service.order.QueryOrderService;
+import cn.seecoder.courselearning.serviceimpl.coupon.QueryOrderService;
 import cn.seecoder.courselearning.util.Constant;
 import cn.seecoder.courselearning.vo.course.CourseWareVO;
 import cn.seecoder.courselearning.vo.ResultVO;

@@ -4,6 +4,8 @@ import cn.seecoder.courselearning.po.order.CourseOrder;
 import java.util.List;
 
 public interface CourseOrderMapper {
+    CourseOrder getByPrimaryKey(Integer orderId);
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(CourseOrder record);

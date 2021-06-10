@@ -12,7 +12,7 @@ import cn.seecoder.courselearning.po.user.User;
 import cn.seecoder.courselearning.service.coupon.coupondeliverstrategy.CouponDeliverStrategy;
 import cn.seecoder.courselearning.service.coupon.CouponService;
 import cn.seecoder.courselearning.service.course.CourseService;
-import cn.seecoder.courselearning.service.order.QueryOrderService;
+import cn.seecoder.courselearning.service.order.CourseOrderService;
 import cn.seecoder.courselearning.service.user.UserService;
 import cn.seecoder.courselearning.util.Constant;
 import cn.seecoder.courselearning.util.CouponValidator;

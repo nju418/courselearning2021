@@ -2,6 +2,15 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
+
+create trigger create_reply_notice before insert on reply
+	for each row
+        begin
+            if(new.reply_id is not null) then
+                insert into reply_notice values (null, (select user_id from reply where id = new.reply_id), new.id);
+            end if;
+        end;
+
 -- ----------------------------
 -- Table structure for reply_notice
 -- ----------------------------

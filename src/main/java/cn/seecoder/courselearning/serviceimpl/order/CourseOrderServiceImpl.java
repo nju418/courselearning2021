@@ -11,6 +11,7 @@ import cn.seecoder.courselearning.service.coupon.CouponService;
 import cn.seecoder.courselearning.service.course.CourseService;
 import cn.seecoder.courselearning.service.order.CourseOrderService;
 import cn.seecoder.courselearning.service.user.UserService;
+import cn.seecoder.courselearning.serviceimpl.coupon.QueryOrderService;
 import cn.seecoder.courselearning.util.Constant;
 import cn.seecoder.courselearning.util.IntHolder;
 import cn.seecoder.courselearning.vo.*;
@@ -28,7 +29,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class CourseOrderServiceImpl implements CourseOrderService {
+public class CourseOrderServiceImpl implements CourseOrderService, QueryOrderService {
     @Resource
     CourseOrderMapper orderMapper;
     @Resource
@@ -298,5 +299,15 @@ public class CourseOrderServiceImpl implements CourseOrderService {
                 }
             }
         }
+    }
+
+    @Override
+    public CourseOrder queryMostRecentOrder(Integer uid, Integer courseId) {
+        return orderMapper.queryMostRecentOrder(uid,courseId);
+    }
+
+    @Override
+    public CourseOrder getByPrimaryKey(Integer orderId) {
+        return orderMapper.getByPrimaryKey(orderId);
     }
 }

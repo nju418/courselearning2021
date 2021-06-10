@@ -11,6 +11,11 @@
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
+  <select id="getByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, origin, cost, course_id, course_name, create_time, user_id, status
+    from course_order
+    where id = #{orderId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from course_order
     where id = #{id,jdbcType=INTEGER}
