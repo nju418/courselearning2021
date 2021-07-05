@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.seecoder.courselearning.mapperservice.post.PostMapper">
+    <resultMap id="BaseResultMap" type="cn.seecoder.courselearning.po.post.Post">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="course_id" jdbcType="INTEGER" property="courseId" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="latest_reply_time" jdbcType="TIMESTAMP" property="latestReplyTime" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from post
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="cn.seecoder.courselearning.po.post.Post" useGeneratedKeys="true" keyProperty="id">
+        insert into post (id, user_id, course_id, title, content, create_time, latest_reply_time)
+        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},#{courseId,jdbcType=INTEGER},#{title,jdbcType=VARCHAR},
+                #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{latestReplyTime, jdbcType=TIMESTAMP})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.seecoder.courselearning.po.post.Post">
+        update post
+        set user_id = #{userId,jdbcType=INTEGER},
+            course_id = #{courseId,jdbcType=INTEGER},
+            title = #{title,jdbcType=VARCHAR},
+            content = #{content,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            latest_reply_time = #{latestReplyTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByCourseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select id, user_id, course_id, title, content, create_time, latest_reply_time
+        from post
+        where course_id = #{courseId}
+    </select>
+    <select id="selectByPrimaryKey" resultType="cn.seecoder.courselearning.po.post.Post" resultMap="BaseResultMap">
+        select id, user_id, course_id, title, content, create_time, latest_reply_time
+        from post
+        where id = #{id}
+    </select>
+
+</mapper>
